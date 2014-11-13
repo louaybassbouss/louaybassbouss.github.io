@@ -1,0 +1,35 @@
+<!-- receiver.html -->
+<!doctype html>
+<html>
+<head>
+   <title>Receiver Example</title>
+   <link href="style.css" rel="stylesheet" type="text/css" />
+   <script type="text/javascript" src="http://famium.fokus.fraunhofer.de/webscreens/js/webscreens.all.min.js"></script>
+   <script type="text/javascript" src="js/Sync.js"></script>
+   <script type="text/javascript">
+      navigator.presentation.onpresent = function(session){
+         var slave = new sync.Slave(session);
+		  session.onmessage = function(msg){
+            console.log("onmessage",msg);
+            //session.postMessage("bar");
+			slave.handleMessage(msg);
+         }
+         slave.init("show it");
+         session.onstatechange = function(){
+            if(session.state == "disconnected"){
+               slave.destroy();
+            }
+         }
+      };
+   </script>
+</head>
+<body>
+	<div id="container">
+	<div id="title">
+		<p  class="title_p">The Platform</p>
+		<p  class="title_e">------Display</p>
+	</div>
+	<div id="show it">
+	</div>
+</body>
+</html>
