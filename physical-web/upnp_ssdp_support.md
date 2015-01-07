@@ -68,7 +68,7 @@ but uses a different protocol to advertise and receive the URL. There are differ
 
 * UPnP Device Description
 
-    ```
+    ```xml
     <?xml version="1.0"?>
     <root xmlns="urn:schemas-upnp-org:device-1-0">
     	<specVersion>
